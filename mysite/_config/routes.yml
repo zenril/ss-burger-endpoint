@@ -1,0 +1,9 @@
+---
+Name: coolroutes
+After:
+  - '#rootroutes'
+  - '#coreroutes'
+---
+SilverStripe\Control\Director:
+  rules:
+    'burgers' : 'BurgerApiController'
