@@ -57,7 +57,11 @@ class BurgerApiController extends ContentController
         if(!$post->streamer){
             return $this->getResponse()->setStatusCode(401);
         }
-    
+
+        $streamer = Streamer::addOrCreate($post->streamer);
+        
+        $burger = Burger::create();
+
 
         $this->getResponse()->setBody(json_encode(
             [

@@ -8,7 +8,7 @@ class Streamer extends DataObject
         'Name' => 'Varchar(255)'
     ];
 
-    private static $has_one = [
+    private static $has_many = [
         "Burger"
     ];
     
