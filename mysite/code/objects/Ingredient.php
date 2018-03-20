@@ -12,5 +12,4 @@ class Ingredient extends DataObject
     private static $has_one = [
         "Burger" => "Burger"
     ];
-
 }

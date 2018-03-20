@@ -8,10 +8,8 @@ class Burger extends DataObject
         'Name' => 'Varchar(255)',
     ];
 
-    private static $has_one = [];
-
-    private static $belongs_to = [
-        'Streamer' => 'Streamer.Burger'
+    private static $has_one = [
+        "Streamer" => "Streamer"
     ];
 
     private static $has_many = [

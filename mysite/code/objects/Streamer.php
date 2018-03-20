@@ -9,18 +9,18 @@ class Streamer extends DataObject
     ];
 
     private static $has_many = [
-        "Burger"
+        "Burgers" => "Burger"
     ];
-    
 
     public static function addOrCreate($streamer) {
+        $streamer = strtolower($streamer);
+
         $obj = Streamer::get()->filter([
             'Name' => $streamer
-        ]);
+        ])->first();
 
         if(!$obj) {
-            $obj = Streamer::create();
-            $obj->Name = $streamer;
+            $obj = Streamer::create(["Name" => $streamer]);
             $obj->write();
         }
 

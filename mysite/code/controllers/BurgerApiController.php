@@ -59,13 +59,24 @@ class BurgerApiController extends ContentController
         }
 
         $streamer = Streamer::addOrCreate($post->streamer);
-        
-        $burger = Burger::create();
 
+        $burger = null;
+        if($post->burger->ingredients){
+            $burger = Burger::create();
+            $burger->write();
+            foreach ($post->burger->ingredients as $key => $value) {
+                $burger->Ingredients()->add(
+                    Ingredient::create([ "Key" => $value ])
+                );
+            }
+
+            $streamer->Burgers()->add($burger);
+            $streamer->write();
+        }
 
         $this->getResponse()->setBody(json_encode(
             [
-                "status" => $post->streamer
+                "status" => $burger
             ]
         ));
 

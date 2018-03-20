@@ -39,12 +39,6 @@
             "web.config"
         ]
     },
-    "config": {
-        "process-timeout": 600,
-        "platform": {
-
-        }
-    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
