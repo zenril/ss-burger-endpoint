@@ -15,5 +15,13 @@ class Burger extends DataObject
     private static $has_many = [
         "Ingredients" => "Ingredient"
     ];
+
+    private static $defaults = [
+        "Name" => 'aa',
+    ];
+
+    public function aa(){
+        return "asdasddasd";
+    }
     
 }

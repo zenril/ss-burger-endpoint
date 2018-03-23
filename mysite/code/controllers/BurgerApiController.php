@@ -2,6 +2,8 @@
 
 use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\HTTPResponse;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Logging\DebugViewFriendlyErrorFormatter;
 
 class BurgerApiController extends ContentController
 {
@@ -71,16 +73,17 @@ class BurgerApiController extends ContentController
             }
 
             $streamer->Burgers()->add($burger);
-            $streamer->write();
+            
+            $id = $streamer->write();
+
+            //$burger = DataObject::get_by_id("Burger",$id);
+            $burger->populateDefaults();
         }
 
-        $this->getResponse()->setBody(json_encode(
-            [
-                "status" => $burger
-            ]
-        ));
+        // $f = new JSONDataFormatter();
+        // return $f->convertDataObject($myDataObject);
 
-
+        $this->getResponse()->setBody(json_encode($burger));
         $this->getResponse()->addHeader("Content-type", "application/json");
     
         return $this->getResponse();
